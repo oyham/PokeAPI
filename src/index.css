@@ -99,7 +99,6 @@ header form {
 
 .btn-search:hover {
 	background-color: var(--color-primary-hover);
-	/* color: #000; */
 }
 
 /* Btn Filter */
@@ -305,17 +304,9 @@ header form {
 	cursor: pointer;
 }
 
-/* 
-======================================= 
-Styles of Pokemon Single Page
-======================================= 
-*/
-
 .main-pokemon {
 	display: flex;
-	/* flex-direction: column; */
 	margin-top: 5rem;
-	/* margin-bottom: 50px; */
 }
 
 .header-main-pokemon {
@@ -329,10 +320,9 @@ Styles of Pokemon Single Page
 
 .number-pokemon {
 	position: absolute;
-	top: -130px;
+	top: -100px;
 	left: 0;
-
-	font-size: 200px;
+	font-size: 5rem;
 	font-weight: 700;
 	color: var(--color-primary-hover);
 }
@@ -340,8 +330,9 @@ Styles of Pokemon Single Page
 .container-img-pokemon {
 	order: 2;
 	flex: 1;
-	padding: 25px 25px 25px 0;
+	padding: 1rem;
 	height: 400px;
+	min-width: 400px;
 }
 
 .container-img-pokemon img {
@@ -352,13 +343,12 @@ Styles of Pokemon Single Page
 .container-info-pokemon {
 	display: flex;
 	flex-direction: column;
-
+	min-width: 250px;
 	order: 1;
-	flex: 1;
 }
 
 .container-info-pokemon h1 {
-	text-align: right;
+	/* text-align: right; */
 	font-size: 60px;
 }
 
