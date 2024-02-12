@@ -312,10 +312,9 @@ Styles of Pokemon Single Page
 
 .main-pokemon {
 	display: flex;
-	flex-direction: column;
-
+	/* flex-direction: column; */
 	margin-top: 100px;
-	margin-bottom: 50px;
+	/* margin-bottom: 50px; */
 }
 
 .header-main-pokemon {
