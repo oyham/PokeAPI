@@ -5,20 +5,19 @@ import { PokemonContext } from '../context/PokemonContext';
 
 export const SearchPage = () => {
 	const location = useLocation();
-
 	const { globalPokemons } = useContext(PokemonContext);
 	// const { filteredPokemons } = useContext(PokemonContext);
 
 	// Verificar si hay datos de búsqueda o asignar una cadena vacía por defecto
 	const searchQuery = location.state ? location.state.toLowerCase() : '';
 
-	if (!searchQuery) {
+	/* if (!searchQuery) {
 		return (
 			<div className='container'>
 				<p className='p-search'>Ingrese un dato en el campo de búsqueda.</p>
 			</div>
 		);
-	}
+	} */
 
 	// Filtrar los Pokémon en base a la búsqueda
 	const filteredPokemons = globalPokemons.filter(pokemon =>

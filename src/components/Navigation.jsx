@@ -7,14 +7,19 @@ export const Navigation = () => {
 		useContext(PokemonContext);
 
 	const navigate = useNavigate();
+	const searchValue = valueSearch.trim()
 
 	const onSearchSubmit = e => {
 		e.preventDefault();
-		navigate('/search', {
-			state: valueSearch,
-		});
-
-		onResetForm();
+		if (!searchValue) {
+			alert('Ingrese un nombre en la barra de búsqueda')
+			navigate('/');
+		} else {
+			navigate('/search', {
+				state: valueSearch,
+			});
+			onResetForm();
+		}
 	};
 
 	return (
@@ -26,7 +31,6 @@ export const Navigation = () => {
 						alt='Logo Pokedex'
 					/>
 				</Link>
-
 				<form onSubmit={onSearchSubmit}>
 					<div className='form-group'>
 						<svg
