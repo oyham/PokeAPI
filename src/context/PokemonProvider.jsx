@@ -17,7 +17,7 @@ export const PokemonProvider = ({ children }) => {
 	const [active, setActive] = useState(false);
 
 	// lLamar 20 pokemones a la API
-	const getAllPokemons = async (limit = 20) => {
+	const getAllPokemons = async (limit = 50) => {
 		const baseURL = 'https://pokeapi.co/api/v2/';
 
 		const res = await fetch(
@@ -33,6 +33,7 @@ export const PokemonProvider = ({ children }) => {
 		const results = await Promise.all(promises);
 
 		setAllPokemons([...allPokemons, ...results]);
+		// setAllPokemons((prevPokemons) => [...prevPokemons, ...results]);
 		setLoading(false);
 	};
 
@@ -75,7 +76,7 @@ export const PokemonProvider = ({ children }) => {
 
 	// BTN CARGAR MÁS
 	const onClickLoadMore = () => {
-		setOffset(offset + 20);
+		setOffset(offset + 50);
 	};
 
 	// Filter Function + State
@@ -104,7 +105,7 @@ export const PokemonProvider = ({ children }) => {
 
 	const [filteredPokemons, setfilteredPokemons] = useState([]);
 
-	const handleCheckbox = (e) => {
+	  const handleCheckbox = (e) => {
 		setTypeSelected({
 			...typeSelected,
 			[e.target.name]: e.target.checked,
@@ -127,6 +128,7 @@ export const PokemonProvider = ({ children }) => {
 			}
 		});
 	};
+
 
 	return (
 		<PokemonContext.Provider
