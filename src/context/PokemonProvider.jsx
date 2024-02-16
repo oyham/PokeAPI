@@ -104,48 +104,39 @@ export const PokemonProvider = ({ children }) => {
   const [filteredPokemons, setfilteredPokemons] = useState([]);
 
   const handleCheckbox = (e) => {
-    setTypeSelected({
-      ...typeSelected,
-      [e.target.name]: e.target.checked,
-    });
+    const typeName = e.target.name;
+    const isChecked = e.target.checked;
 
-    setfilteredPokemons((prevFilteredPokemons) => {
-      if (e.target.checked) {
-        // Filtrar los Pokémon que coinciden con el tipo seleccionado
-        const filteredResults = allPokemons.filter((pokemon) =>
-          pokemon.types.map((type) => type.type.name).includes(e.target.name)
-        );
-        return [...prevFilteredPokemons, ...filteredResults];
+    setTypeSelected((prevTypeSelected) => {
+      const currentTypeSelected = Array.isArray(prevTypeSelected)
+        ? prevTypeSelected
+        : [];
+
+      if (isChecked) {
+        // Agregar el tipo a la lista de tipos seleccionados
+        return [...currentTypeSelected, typeName];
       } else {
-        // Filtrar los Pokémon que NO coinciden con el tipo deseleccionado
-        const filteredResults = prevFilteredPokemons.filter(
-          (pokemon) =>
-            !pokemon.types.map((type) => type.type.name).includes(e.target.name)
-        );
-        return filteredResults;
+        // Remover el tipo de la lista de tipos seleccionados
+        return currentTypeSelected.filter((type) => type !== typeName);
       }
     });
   };
 
-  /*  const handleCheckbox = (e) => {
-    setTypeSelected({
-      ...typeSelected,
-      [e.target.name]: e.target.checked,
-    });
+  // Utilizamos useEffect para realizar el filtrado cuando cambia typeSelected
+  useEffect(() => {
+    const currentTypeSelected = Array.isArray(typeSelected) ? typeSelected : [];
 
-    if (e.target.checked) {
-      const filteredResults = globalPokemons.filter((pokemon) =>
-        pokemon.types.map((type) => type.type.name).includes(e.target.name)
-      );
-      setfilteredPokemons([...filteredPokemons, ...filteredResults]);
-    } else {
-      const filteredResults = filteredPokemons.filter(
-        (pokemon) =>
-          !pokemon.types.map((type) => type.type.name).includes(e.target.name)
-      );
-      setfilteredPokemons([...filteredResults]);
-    }
-  }; */
+    // Filtrar los Pokémon que coinciden con los tipos seleccionados
+    const filteredResults = allPokemons.filter(
+      (pokemon) =>
+        currentTypeSelected.length === 0 ||
+        pokemon.types
+          .map((type) => type.type.name)
+          .some((type) => currentTypeSelected.includes(type))
+    );
+
+    setfilteredPokemons(filteredResults);
+  }, [typeSelected, allPokemons]);
 
   return (
     <PokemonContext.Provider
