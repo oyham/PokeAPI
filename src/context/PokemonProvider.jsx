@@ -34,6 +34,7 @@ export const PokemonProvider = ({ children }) => {
 
     setAllPokemons([...allPokemons, ...results]);
     setLoading(false);
+    console.log(results);
   };
 
   // Llamar todos los pokemones
@@ -111,7 +112,7 @@ export const PokemonProvider = ({ children }) => {
     setfilteredPokemons((prevFilteredPokemons) => {
       if (e.target.checked) {
         // Filtrar los Pokémon que coinciden con el tipo seleccionado
-        const filteredResults = globalPokemons.filter((pokemon) =>
+        const filteredResults = allPokemons.filter((pokemon) =>
           pokemon.types.map((type) => type.type.name).includes(e.target.name)
         );
         return [...prevFilteredPokemons, ...filteredResults];

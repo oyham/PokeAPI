@@ -22,3 +22,21 @@ VM1252:1  Warning: Encountered two children with the same key, `1`. Keys should 
 ```
 
 - Al seleccionar Planta, muestra los 3 primeros pokemons, a pesar de tener más tipos plantas dentro de los 50 pokemons que cargan inicialmente.
+
+---
+
+Cambio realizado:
+
+```js
+setfilteredPokemons((prevFilteredPokemons) => {
+      if (e.target.checked) {
+        // Filtrar los Pokémon que coinciden con el tipo seleccionado
+        const filteredResults = globalPokemons.filter((pokemon) =>
+
+setfilteredPokemons((prevFilteredPokemons) => {
+      if (e.target.checked) {
+        // Filtrar los Pokémon que coinciden con el tipo seleccionado
+        const filteredResults = allPokemons.filter((pokemon) =>
+```
+
+Así se filtra el tipo pero sólo de los pokemons que aparecen en pantalla. Aún persiste el bug de dúplicados.
